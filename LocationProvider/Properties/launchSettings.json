@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "LocationProvider (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "LocationProvider (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
