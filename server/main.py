@@ -145,12 +145,14 @@ def select_device() -> RemoteServiceDiscoveryService:
     print('Looking for devices...')
     devices = get_device_list()
     if not devices:
-        raise Exception('No device connected')
+        print('Found 0 device.')
+        return None
     if len(devices) == 1:
         print('Found 1 device.')
         return devices[0]
     else:
-        raise Exception('Too many devices connected')
+        print('Too many devices connected')
+        return None
 
 
 def start_server():
@@ -167,8 +169,8 @@ def main():
     _thread.start_new_thread(start_server, ())
     print('Server is running on http://127.0.0.1:12924')
 
-    device = select_device()
-    asyncio.run(start_tunnel_wrapper(device))
+    if d := select_device():
+        asyncio.run(start_tunnel_wrapper(d))
 
 
 if __name__ == "__main__":
